@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mikeday37/hqx-node-js/issues"
   },
-  "homepage": "https://github.com/mikeday37/hqx-node-js#readme"
+  "homepage": "https://github.com/mikeday37/hqx-node-js#readme",
+  "dependencies": {
+    "canvas": "^2.6.1"
+  }  
 }

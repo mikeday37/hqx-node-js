@@ -20,6 +20,11 @@ Some basic support for alpha transparency has been added.
 [Biolab Disaster Scaled With hqx](https://playbiolab.com/hqx.php)
 
 
+### Installation ###
+
+	npm install git+https://github.com/mikeday37/hqx-node-js.git
+
+
 ### Usage ###
 
 	const { hqx } = require('hqx-node-js');

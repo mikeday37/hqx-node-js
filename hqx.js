@@ -9,6 +9,8 @@
  *
  * Copyright (C) 2010 Dominic Szablewski ( mail@phoboslab.org )
  *
+ * Copyright (C) 2021 Mike Day ( https://github.com/mikeday37 )
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -24,8 +26,9 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
+exports.hqx = (canvas, scale) => get_hqx().hqx(canvas, scale);
 
-(function(window){
+function get_hqx(){
 
 "use strict"; // strict will be optimized on engines (https://developer.mozilla.org/en/JavaScript/Strict_mode)
 
@@ -44,7 +47,7 @@ var
 	_trU = 0x00000700,
 	_trV = 0x00000006;
 
-var _Math = window.Math; // global to local. SHALL NOT cache abs directly (http://jsperf.com/math-vs-global/2)
+var _Math = Math; // global to local. SHALL NOT cache abs directly (http://jsperf.com/math-vs-global/2)
 
 var _RGBtoYUV = function( c ) {
 	var r = (c & 0xFF0000) >> 16;
@@ -193,22 +196,17 @@ var getImagePixels = function( image, x, y, width, height ) {
 };
 
 
-window.hqx = function( img, scale ) {
+const hqx = function( img, scale ) {
 	// We can only scale with a factor of 2, 3 or 4
 	if( [2,3,4].indexOf(scale) === -1 ) {
 		return img;
 	}
 
 	var orig, origCtx, scaled, origPixels;
-	if (img instanceof HTMLCanvasElement){
 		orig = img;
 		origCtx = orig.getContext('2d');
 		scaled = orig;
 		origPixels = origCtx.getImageData(0, 0, orig.width, orig.height).data;
-	} else {
-		origPixels = getImagePixels( img, 0, 0, img.width, img.height ).data;
-		scaled = document.createElement('canvas');
-	}
 	
 	
 	// pack RGBA colors into integers
@@ -11871,4 +11869,5 @@ var hq4x = function( width, height ) {
     }
 }
 
-})(this);
+return {hqx};
+}

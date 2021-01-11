@@ -1,0 +1,19 @@
+{
+  "name": "hqx-node-js",
+  "version": "1.0.0",
+  "description": "hqx pixel art upscaling algorithm compatible with node.js canvas module",
+  "main": "hqx.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeday37/hqx-node-js.git"
+  },
+  "author": "Mike Day ( https://github.com/mikeday37 )",
+  "license": "SEE LICENSE IN lgpl-2.1.txt",
+  "bugs": {
+    "url": "https://github.com/mikeday37/hqx-node-js/issues"
+  },
+  "homepage": "https://github.com/mikeday37/hqx-node-js#readme"
+}

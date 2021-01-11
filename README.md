@@ -22,7 +22,9 @@ Some basic support for alpha transparency has been added.
 
 ### Usage ###
 
-	var scaledCanvas = hqx( originalCanvas, 3 );
+	const { hqx } = require('hqx-node-js');
+
+	let scaledCanvas = hqx( originalCanvas, 3 );
 	
 The second argument is the scaling factor. hqx supports 2, 3 and 4.
 

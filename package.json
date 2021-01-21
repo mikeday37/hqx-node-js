@@ -1,6 +1,6 @@
 {
   "name": "hqx-node-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "hqx pixel art upscaling algorithm compatible with node.js canvas module",
   "main": "hqx.js",
   "scripts": {

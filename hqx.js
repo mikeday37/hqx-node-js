@@ -175,7 +175,7 @@ const hqx = function( img, scale ) {
 		return img;
 	}
 
-	var orig, origCtx, scaled, origPixels, scaledCtx;
+	var orig, origCtx, scaled, origPixels;
 		orig = img;
         origCtx = orig.getContext('2d');
 		scaled = createCanvas(orig.width, orig.height);

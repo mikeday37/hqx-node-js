@@ -26,6 +26,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
+ const { createCanvas } = require('canvas');
+
 exports.hqx = (canvas, scale) => get_hqx().hqx(canvas, scale);
 
 function get_hqx(){
@@ -166,35 +168,6 @@ var _Interp10 = function( pc, c1, c2, c3 ) {
 };
 
 
-var getVendorAttribute = function( el, attr ) {
-	var uc = attr.charAt(0).toUpperCase() + attr.substr(1);
-	return el[attr] || el['ms'+uc] || el['moz'+uc] || el['webkit'+uc] || el['o'+uc];
-};
-
-
-// This function normalizes getImageData to extract the real, actual
-// pixels from an image. The naive method recently failed on retina
-// devices with a backgingStoreRatio != 1
-var getImagePixels = function( image, x, y, width, height ) {
-	var canvas = document.createElement('canvas');
-	var ctx = canvas.getContext('2d');
-
-	var ratio = getVendorAttribute( ctx, 'backingStorePixelRatio' ) || 1;
-	ctx.getImageDataHD = getVendorAttribute( ctx, 'getImageDataHD' );
-
-	var realWidth = image.width / ratio,
-		realHeight = image.height / ratio;
-
-	canvas.width = Math.ceil( realWidth );
-	canvas.height = Math.ceil( realHeight );
-
-	ctx.drawImage( image, 0, 0, realWidth, realHeight );
-	
-	return (ratio === 1)
-		? ctx.getImageData( x, y, width, height )
-		: ctx.getImageDataHD( x, y, width, height );
-};
-
 
 const hqx = function( img, scale ) {
 	// We can only scale with a factor of 2, 3 or 4
@@ -202,10 +175,10 @@ const hqx = function( img, scale ) {
 		return img;
 	}
 
-	var orig, origCtx, scaled, origPixels;
+	var orig, origCtx, scaled, origPixels, scaledCtx;
 		orig = img;
-		origCtx = orig.getContext('2d');
-		scaled = orig;
+        origCtx = orig.getContext('2d');
+		scaled = createCanvas(orig.width, orig.height);
 		origPixels = origCtx.getImageData(0, 0, orig.width, orig.height).data;
 	
 	
